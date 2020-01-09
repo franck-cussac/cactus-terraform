@@ -32,7 +32,7 @@ resource "aws_ecs_service" "cactus_back_end" {
     launch_type = "FARGATE"
 
     network_configuration {
-        security_groups = ["${aws_security_group.back_end.id}"]
+        security_groups = ["${aws_security_group.back_end_ecs_internal.id}"]
         subnets = ["${aws_subnet.public-subnet-1.id}", "${aws_subnet.public-subnet-2.id}", "${aws_subnet.public-subnet-3.id}"]
         assign_public_ip = true
     }

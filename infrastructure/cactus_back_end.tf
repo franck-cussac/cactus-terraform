@@ -23,8 +23,8 @@ resource "aws_security_group" "application_load_balancer_back_end" {
 }
 
 
-resource "aws_security_group" "back_end" {
-    name = "${var.cactus_back_name}-${var.stage}-back-end-sg"
+resource "aws_security_group" "back_end_ecs_internal" {
+    name = "${var.cactus_back_name}-${var.stage}-back-end-ecs-internal-sg"
     description = "cactus back-end"
     vpc_id = "${aws_vpc.vpc.id}"
 
@@ -44,7 +44,7 @@ resource "aws_security_group" "back_end" {
     }
 
     tags = {
-        Name = "${var.cactus_back_name}-${var.stage}-back-end-sg"
+        Name = "${var.cactus_back_name}-${var.stage}-back-end-ecs-internal-sg"
     }
 }
 

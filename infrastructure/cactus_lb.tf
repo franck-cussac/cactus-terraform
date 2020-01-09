@@ -1,11 +1,11 @@
 resource "aws_alb" "cactus_alb" {
   name            = "cactus-${var.stage}-alb"
   subnets         = ["${aws_subnet.public-subnet-1.id}", "${aws_subnet.public-subnet-2.id}", "${aws_subnet.public-subnet-3.id}"]
-  security_groups = ["${aws_security_group.application_load_balancer.id}"]
+  security_groups = ["${aws_security_group.application_load_balancer_front_end.id}", "${aws_security_group.application_load_balancer_back_end.id}"]
 }
 
 resource "aws_alb_target_group" "cactus_front_end" {
-    name        = "${var.cactus_front_name}-${var.stage}-front-end"
+    name        = "${var.cactus_front_name}-${var.stage}-frontend"
     port        = 80
     protocol    = "HTTP"
     vpc_id      = "${aws_vpc.vpc.id}"
@@ -23,7 +23,7 @@ resource "aws_alb_target_group" "cactus_front_end" {
 }
 
 resource "aws_alb_target_group" "cactus_back_end" {
-    name        = "${var.cactus_back_name}-${var.stage}-back-end"
+    name        = "${var.cactus_back_name}-${var.stage}-backend"
     port        = 8081
     protocol    = "HTTP"
     vpc_id      = "${aws_vpc.vpc.id}"

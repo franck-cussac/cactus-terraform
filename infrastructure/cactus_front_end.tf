@@ -1,4 +1,4 @@
-resource "aws_security_group" "application_load_balancer" {
+resource "aws_security_group" "application_load_balancer_front_end" {
     name = "${var.cactus_front_name}-${var.stage}-alb-web-sg"
     description = "Allow all inbound traffic"
     vpc_id = "${aws_vpc.vpc.id}"
@@ -32,7 +32,7 @@ resource "aws_security_group" "front_end_ecs_internal" {
         from_port   = 80
         to_port     = 80
         protocol    = "tcp"
-        security_groups = ["${aws_security_group.application_load_balancer.id}"]
+        security_groups = ["${aws_security_group.application_load_balancer_front_end.id}"]
         cidr_blocks = ["0.0.0.0/0"]
     }
 
