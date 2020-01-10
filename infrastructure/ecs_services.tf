@@ -21,6 +21,7 @@ resource "aws_ecs_service" "cactus_front_end" {
     }
 
     depends_on = [
+        "aws_alb_listener.cactus_front_end"
     ]
 }
 
@@ -44,6 +45,7 @@ resource "aws_ecs_service" "cactus_back_end" {
     }
 
     depends_on = [
-        "aws_elasticache_cluster.cactus_back_end"
+        "aws_elasticache_cluster.cactus_back_end",
+        "aws_alb_listener.cactus_back_end"
     ]
 }
