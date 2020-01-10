@@ -22,18 +22,10 @@ resource "aws_security_group" "application_load_balancer_back_end" {
     }
 }
 
-
 resource "aws_security_group" "back_end_ecs_internal" {
     name = "${var.cactus_back_name}-${var.stage}-back-end-ecs-internal-sg"
     description = "cactus back-end"
     vpc_id = "${aws_vpc.vpc.id}"
-
-    egress {
-        from_port       = 0
-        to_port         = 0
-        protocol        = "-1"
-        cidr_blocks     = ["0.0.0.0/0"]
-    }
 
     ingress {
         from_port   = 8081
@@ -43,11 +35,17 @@ resource "aws_security_group" "back_end_ecs_internal" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
+    egress {
+        from_port       = 0
+        to_port         = 0
+        protocol        = "-1"
+        cidr_blocks     = ["0.0.0.0/0"]
+    }
+
     tags = {
         Name = "${var.cactus_back_name}-${var.stage}-back-end-ecs-internal-sg"
     }
 }
-
 
 resource "aws_ecs_task_definition" "back_end" {
   family = "${var.cactus_back_name}-${var.stage}-back-end"

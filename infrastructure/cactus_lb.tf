@@ -5,7 +5,7 @@ resource "aws_alb" "cactus_alb" {
 }
 
 resource "aws_alb_target_group" "cactus_front_end" {
-    name        = "${var.cactus_front_name}-${var.stage}-frontend"
+    name        = "${var.cactus_front_name}-${var.stage}-front-end"
     port        = 80
     protocol    = "HTTP"
     vpc_id      = "${aws_vpc.vpc.id}"
@@ -23,7 +23,7 @@ resource "aws_alb_target_group" "cactus_front_end" {
 }
 
 resource "aws_alb_target_group" "cactus_back_end" {
-    name        = "${var.cactus_back_name}-${var.stage}-backend"
+    name        = "${var.cactus_back_name}-${var.stage}-back-end"
     port        = 8081
     protocol    = "HTTP"
     vpc_id      = "${aws_vpc.vpc.id}"

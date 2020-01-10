@@ -22,7 +22,6 @@ resource "aws_security_group" "application_load_balancer_front_end" {
     }
 }
 
-
 resource "aws_security_group" "front_end_ecs_internal" {
     name = "${var.cactus_front_name}-${var.stage}-front-end-ecs-internal-sg"
     description = "Allow all inbound traffic"
@@ -47,7 +46,6 @@ resource "aws_security_group" "front_end_ecs_internal" {
         Name = "${var.cactus_front_name}-${var.stage}-front-end-ecs-internal-sg"
     }
 }
-
 
 resource "aws_ecs_task_definition" "front_end" {
   family = "${var.cactus_front_name}-${var.stage}-front-end"

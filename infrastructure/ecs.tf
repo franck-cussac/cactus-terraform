@@ -57,12 +57,12 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_cloudwatch_log_group" "log_group_front_end" {
-  name = "${var.log_group_name}/cactus-front-${var.stage}"
+  name = "${var.log_group_name}/${var.cactus_front_name}-${var.stage}"
   retention_in_days = 5
 }
 
 resource "aws_cloudwatch_log_group" "log_group_back_end" {
-  name = "${var.log_group_name}/cactus-back-${var.stage}"
+  name = "${var.log_group_name}/${var.cactus_back_name}-${var.stage}"
   retention_in_days = 5
 }
 
